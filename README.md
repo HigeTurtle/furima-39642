@@ -46,70 +46,16 @@ has_many :orders
 |----------------------|-----------|-------------------------------|
 |name                  |string     |null: false                    |
 |explanation           |text       |null: false                    |
-|category_id           |integer    |null: false, foreign_key: true |
-|condition_id          |integer    |null: false, foreign_key: true |
-|delivery_charge_id    |integer    |null: false, foreign_key: true |
-|prefecture_id         |integer    |null: false, foreign_key: true |
-|delivery_schedule_id  |integer    |null: false, foreign_key: true |
+|category_id           |integer    |null: false                    |
+|condition_id          |integer    |null: false                    |
+|delivery_charge_id    |integer    |null: false                    |
+|prefecture_id         |integer    |null: false                    |
+|delivery_schedule_id  |integer    |null: false                    |
 |price                 |integer    |null: false                    |
 |user                  |references |null: false, foreign_key: true |
 
 belongs_to :user
 has_one :order
-belongs_to :category
-belongs_to :condition
-belongs_to :delivery_charge
-belongs_to :prefecture
-belongs_to :delivery_schedule
-
-
-  # categoriesテーブル
-
-  |Column                |Type       |Options                        |
-  |----------------------|-----------|-------------------------------|
-  |category              |string     |null: false                    |
-  
-  has_many :items dependent: :destroy
-
-
-  # conditionsテーブル
-
-  |Column                |Type       |Options                        |
-  |----------------------|-----------|-------------------------------|
-  |condition             |string     |null: false                    |
-  
-  has_many :items 
-
-
-  # delivery_chargeテーブル
-
-  |Column                |Type       |Options                        |
-  |----------------------|-----------|-------------------------------|
-  |delivery_charge       |string     |null: false                    |
-  
-  has_many :items 
-
-
-  # prefecturesテーブル
-
-  |Column                |Type       |Options                        |
-  |----------------------|-----------|-------------------------------|
-  |prefecture            |string     |null: false                    |
-  
-  has_many :items dependent: :destroy
-  has_many :addresses dependent: :destroy
-
-
-
-  # delivery_scheduleテーブル
-
-  |Column                |Type       |Options                        |
-  |----------------------|-----------|-------------------------------|
-  |delivery_schedule     |string     |null: false                    |
-  
-  has_many :items dependent: :destroy
-
-
 
 
 #　addressesテーブル
@@ -125,7 +71,6 @@ belongs_to :delivery_schedule
 |order            |references |null: false, foreign_key: true |
 
 belongs_to :order
-belongs_to :prefecture
 
 
 
