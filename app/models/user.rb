@@ -10,6 +10,7 @@ class User < ApplicationRecord
   
 
   validates :nickname, presence: true
+  validates :password, format: { with: valid_passeord }
   validates :first_name, presence: true, format: { with: valid_name }
   validates :last_name, presence: true, format: { with: valid_name }
   validates :first_name_kana, presence: true, format: { with: valid_name_kana }
@@ -17,7 +18,7 @@ class User < ApplicationRecord
   validates :birthday, presence: true
 
   
-  validates :password, format: { with: valid_passeord }
+  
 
   
 
