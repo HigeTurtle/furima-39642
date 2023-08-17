@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new ,:create]
+  before_action :authenticate_user!, only: [:new ,:create, :destroy]
   before_action :set_item,           only: [:show ,:destroy]
 
   def new
@@ -23,7 +23,9 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.destroy
+    if current_user.id == @item.user_id
+     @item.destroy
+    end
     redirect_to root_path
   end
 
