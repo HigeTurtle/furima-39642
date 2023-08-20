@@ -6,15 +6,16 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @buy_form = BuyForm.new
+    @order_form = OrderForm.new
   end
 
   def create
-    @buy_form = BuyForm.new(order_params)
-    if @buy_form.valid?
-      @buy_form.save
+    @order_form = OrderForm.new(order_params)
+    if @order_form.valid?
+      @order_form.save
       redirect_to root_path
     else
+      @order_form = OrderForm.new
       render :new, status: :unprocessable_entity
     end
   end
@@ -22,6 +23,6 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:buy_form).permit(:post_code, :prefecture_id, :city, :address, :building, :phone_num).merge(user_id: current_user.id)
+    params.require(:order_form).permit(:post_code, :prefecture_id, :city, :address, :building, :phone_num).merge(user_id: current_user.id)
   end
 end
