@@ -8,5 +8,6 @@ FactoryBot.define do
     building         { Faker::Lorem.sentence}
     phone_num        { Faker::Number.decimal_part(digits: 11) }
 
+    token            {"tok_abcdefghijk00000000000000000"}
   end
 end

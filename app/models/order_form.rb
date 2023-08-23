@@ -1,6 +1,6 @@
   class OrderForm
     include ActiveModel::Model
-    attr_accessor  :user_id, :item_id, :post_code, :prefecture_id, :city, :address, :building, :phone_num
+    attr_accessor  :user_id, :item_id, :post_code, :prefecture_id, :city, :address, :building, :phone_num, :token
   
     validates :user_id,       presence: true
     validates :item_id,       presence: true
@@ -12,7 +12,7 @@
     validate  :building
     validates :phone_num,     presence: true, format: { with: /\A\d{10}$|^\d{11}\z/ }
     
-  
+    validates :token, presence: true
   
     def save
       @order = Order.create(user_id: @user_id, item_id: @item_id)
