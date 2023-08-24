@@ -13,14 +13,14 @@
       validates :city
       validates :address
       validates :phone_num, format: { with: /\A\d{10}$|^\d{11}\z/ }
-      
+
       validates :token
     end
 
 
 
     def save
-      @order = Order.create(user_id: @user_id, item_id: @item_id)
+      @order = Order.create(user_id: user_id, item_id: item_id)
       Address.create(post_code: post_code, prefecture_id: prefecture_id, city: city, address: address, building: building, phone_num: phone_num, order_id: @order.id)
     end
   end
