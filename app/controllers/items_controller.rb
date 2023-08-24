@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!,       except: [:index, :show]
-  before_action :set_item,                 except: [:index, :create]
+  before_action :set_item,                 except: [:index, :new, :create]
   before_action :contributor_confirmation, only:   [:destroy, :edit, :update]
   
 
@@ -35,6 +35,9 @@ class ItemsController < ApplicationController
 
 
   def edit
+    if Order.exists?(item_id: @item.id) 
+      redirect_to root_path
+    end
   end
 
 
