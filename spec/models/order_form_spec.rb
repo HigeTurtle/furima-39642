@@ -74,11 +74,27 @@ RSpec.describe OrderForm, type: :model do
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Phone num is invalid")
       end
+      it 'phone_numに半角数字以外が含まれている場合は保存できない' do
+        @order_form.phone_num = '1111111111あ'
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include("Phone num is invalid")
+      end
 
       it 'tokenが空白だと保存できない' do
         @order_form.token = ''
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Token can't be blank")
+      end
+
+      it 'user_idが空白だと保存できない' do
+        @order_form.user_id = ''
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空白だと保存できない' do
+        @order_form.item_id = ''
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
